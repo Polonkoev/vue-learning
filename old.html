@@ -1,0 +1,290 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="message" />
+      <pre>
+        {{$data | json }}
+      </pre>
+      <h1>{{sayHello()}}</h1>
+      <h1>Functions: {{string.split('').reverse().join("")}}</h1>
+      <h1>String: {{message}}</h1>
+      <h1>Sum: {{1+2}}</h1>
+      <div class="student">
+        <h1>Age: {{age}}</h1>
+        <h1>
+          IF Statement: {{isStudent ? 'I am stuident' : 'I am not a student'}}
+        </h1>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          message: "Vuejs!",
+          age: "32",
+          isStudent: false,
+          name: "Tima",
+          string: "My name is Timson",
+        },
+        methods: {
+          sayHello: function () {
+            return "Hello my name is " + this.name;
+          },
+        },
+      });
+    </script>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Вторая попытка</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2><a :href="url">Google</a></h2>
+      <input type="text" :value="name" />
+      <h2 v-html="markup"></h2>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          url: "http://google.com",
+          markup: '<a href="http://google.com">Google</a>',
+          name: "Tima",
+        },
+      });
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Какая-то попытка попытка</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2 @mouseover="onHover">{{title}}: {{counter}}</h2>
+      <button @click.once="addCounter(5, 'Changed on 5', $event)">+5</button>
+      <button @click="addCounter(10, 'Changed on 10', $event)">+10</button>
+
+      <hr />
+      <h2>
+        <a href="https://google.com" target="_blank" @click.prevent>Google</a>
+      </h2>
+      <div @scroll.passive="onScroll"></div>
+      <!-- .stop - stopPropagation
+    .prevent - preventDefault
+.capture 
+.self
+.once
+.passive
+-->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          counter: 0,
+          title: "Counter",
+        },
+        methods: {
+          addCounter: function (num, string, event) {
+            this.counter += num;
+            this.title = string;
+            if (num === 5) {
+              event.target.style.color = "blue";
+              //blue
+            } else if (num === 10) {
+              event.target.style.color = "red";
+              //red
+            }
+          },
+          onHover: function (event) {
+            event.target.style.color = "red";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6 попытка</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" @keyup.enter.up="alertValue" />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {},
+        methods: {
+          alertValue: function (event) {
+            alert(event.target.value);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6 попытка</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model.lazy="inputValue" />
+      <h2>{{inputValue}}</h2>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          inputValue: "Initial value",
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6 попытка</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-show="isVisible">Visible!</h1>
+      <h2 v-show="!isVisible">Not Visible!</h2>
+      <button @click="isVisible = !isVisible">Toogle</button>
+      <hr />
+      <h2 v-if="char === 'a'">A</h2>
+      <h2 v-else-if="char === 'b'">B</h2>
+      <h2 v-else-if="char === 'c'">C</h2>
+      <h2 v-else>No match</h2>
+
+      <input type="text" v-model="char" />
+
+      <hr />
+      <template v-if="isVisible">
+        <h2>I am title</h2>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio,
+          dolorem!
+        </p>
+      </template>
+
+      <template v-else="!isVisible">
+        <h2 style="color: red">I am title</h2>
+        <p style="color: red">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio,
+          dolorem!
+        </p>
+      </template>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          isVisible: false,
+          char: "a",
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6 попытка</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(student, index) of students">
+          {{index +1}}. {{student.name}} - <b> {{student.age}} </b>
+        </li>
+      </ul>
+
+      <hr />
+      <span v-for="n in 10">{{n}}</span>
+
+      <hr />
+
+      <ul>
+        <li v-for="(value, key, index) in person">
+          <em>{{index+1}} </em><b>{{key}} : </b>{{value}}
+        </li>
+      </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          students: [
+            { name: "Tima", age: 30 },
+            { name: "Anna", age: 31 },
+            { name: "Kaban", age: 32 },
+            { name: "Kon", age: 150 },
+          ],
+          person: {
+            name: "Tima",
+            age: 30,
+            job: "Master",
+          },
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>
